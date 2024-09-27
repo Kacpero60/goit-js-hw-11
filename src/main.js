@@ -1,6 +1,9 @@
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 
+import SimpleLightbox from "simplelightbox";
+import "simplelightbox/dist/simple-lightbox.min.css";
+
 const API_KEY = 'YOUR_PIXABAY_API_KEY'; 
 const form = document.getElementById('search-form');
 const gallery = document.getElementById('gallery');
@@ -32,22 +35,7 @@ function renderGallery(images) {
       <p>Likes: ${image.likes} Views: ${image.views} Comments: ${image.comments} Downloads: ${image.downloads}</p>
     </div>
   `).join('');
+
+  const lightbox = new SimpleLightbox('.gallery-item a');
+  lightbox.refresh();
 }
-
-import SimpleLightbox from "simplelightbox";
-import "simplelightbox/dist/simple-lightbox.min.css";
-
-function renderGallery(images) {
-    gallery.innerHTML = images.map(image => `
-      <div class="gallery-item">
-        <a href="${image.largeImageURL}">
-          <img src="${image.webformatURL}" alt="${image.tags}" />
-        </a>
-        <p>Likes: ${image.likes} Views: ${image.views} Comments: ${image.comments} Downloads: ${image.downloads}</p>
-      </div>
-    `).join('');
-  
-    const lightbox = new SimpleLightbox('.gallery-item a');
-    lightbox.refresh();
-  }
-  
